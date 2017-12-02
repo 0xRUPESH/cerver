@@ -1,0 +1,4 @@
+#!/bin/bash
+zip -r backup.zip ronli
+mv backup.zip ~/backups/ #Make sure backups folder exist in your home dir
+cut -d " " -f1 /var/log/apache2/access.log | uniq -c >> ~/stats/stats.txt #Make sure  stats folder exists in your home dir

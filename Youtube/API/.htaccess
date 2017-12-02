@@ -1,0 +1,2 @@
+SetEnvIf Request_URI ^/ no-gzip=1
+
