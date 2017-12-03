@@ -1,0 +1,45 @@
+#!/bin/bash
+number=0
+if [ -z $1 ] || [ -z $2 ]
+	then
+	echo "Umm! But You dont know how it works"
+	exit 1
+fi
+
+for i in $*
+do
+	if [[ number -eq 0 ]]
+	then
+		let "number++"
+		msg=$2
+		
+	else
+		if [[ number -eq 1 ]]
+			then
+			let "number++"
+			continue
+		fi
+		msg+="+$i"
+	fi
+done
+
+case "$1" in
+	"abdel") number=9999999999;;
+
+
+	*) len=`expr length "$1"`
+
+		if [ $len -eq 10 ]
+			then
+			number=$1
+		else
+			echo "Invalid Number"
+			exit 1
+		fi
+		;;
+esac
+
+respo=$(curl -s "https://ronli.xyz/sms/?phn=$number&msg=$msg")
+[ "$respo" == "sent" ] && echo "sent" || printf "\a Rupesh! something is wrong"
+echo ""
+exit 0
